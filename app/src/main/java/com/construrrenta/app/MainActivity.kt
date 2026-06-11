@@ -162,25 +162,33 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 toolViewModel.uiState.collect { state ->
-                    binding.swipeRefresh.isRefreshing = false
                     when (state) {
                         is ToolUiState.Loading -> {
-                            binding.swipeRefresh.isRefreshing = true
+                            if (!binding.swipeRefresh.isRefreshing) {
+                                binding.pbLoading.visibility = View.VISIBLE
+                            }
+                            binding.rvTools.visibility = View.GONE
                             binding.tvEmpty.visibility = View.GONE
                             binding.layoutError.visibility = View.GONE
                         }
                         is ToolUiState.Success -> {
+                            binding.pbLoading.visibility = View.GONE
+                            binding.swipeRefresh.isRefreshing = false
                             binding.rvTools.visibility = View.VISIBLE
                             binding.tvEmpty.visibility = View.GONE
                             binding.layoutError.visibility = View.GONE
                             toolAdapter.updateData(state.tools)
                         }
                         is ToolUiState.Empty -> {
+                            binding.pbLoading.visibility = View.GONE
+                            binding.swipeRefresh.isRefreshing = false
                             binding.rvTools.visibility = View.GONE
                             binding.tvEmpty.visibility = View.VISIBLE
                             binding.layoutError.visibility = View.GONE
                         }
                         is ToolUiState.Error -> {
+                            binding.pbLoading.visibility = View.GONE
+                            binding.swipeRefresh.isRefreshing = false
                             binding.rvTools.visibility = View.GONE
                             binding.tvEmpty.visibility = View.GONE
                             binding.layoutError.visibility = View.VISIBLE

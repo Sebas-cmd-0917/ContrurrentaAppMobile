@@ -31,4 +31,13 @@
 
     <!-- Dividers / Bordes -->
     <color name="dividerColor">#DEE2E6</color>
+
+    <!-- Construrrenta Native UI Palette (Strict Rules) -->
+    <color name="app_primary_red">#E63946</color>
+    <color name="app_background_white">#FFFFFF</color>
+    <color name="app_surface_black">#000000</color>
+    <color name="app_surface_mate">#2B2D42</color>
+    <color name="app_secondary_slate">#8D99AE</color>
+    <color name="app_secondary_light_gray">#F3F4F6</color>
+    <color name="app_bg_gray">#F9FAFB</color>
 </resources>
