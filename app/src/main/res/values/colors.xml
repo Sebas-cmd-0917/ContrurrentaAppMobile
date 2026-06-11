@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta principal (extraída de index.css web) -->
+    <color name="primaryColor">#00296B</color>
+    <color name="primaryDarkColor">#003F88</color>
+    <color name="primaryLightColor">#00509D</color>
+    <color name="secondaryColor">#FDC500</color>
+    <color name="secondaryDarkColor">#FFD500</color>
+    <color name="backgroundColor">#F8F9FA</color>
+    <color name="surfaceColor">#FFFFFF</color>
+    <color name="textColor">#212529</color>
+    <color name="textMutedColor">#6C757D</color>
+    <color name="errorColor">#DC3545</color>
+    <color name="successColor">#28A745</color>
+
+    <!-- Colores derivados para UI mobile -->
+    <color name="primaryTintLight">#E8EEF7</color>
+    <color name="secondaryTintLight">#FFF8E1</color>
+    <color name="successTintLight">#E8F5E9</color>
+
+    <!-- Badges de estado (booking status) -->
+    <color name="statusPending">#FF9800</color>
+    <color name="statusConfirmed">#28A745</color>
+    <color name="statusCancelled">#DC3545</color>
+    <color name="statusCompleted">#00509D</color>
+    <color name="statusDefault">#6C757D</color>
+
+    <!-- Dividers / Bordes -->
+    <color name="dividerColor">#DEE2E6</color>
 </resources>
