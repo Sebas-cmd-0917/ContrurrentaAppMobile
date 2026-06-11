@@ -13,6 +13,7 @@ sealed class ToolUiState {
     object Loading : ToolUiState()
     data class Success(val tools: List<ToolResponse>) : ToolUiState()
     data class Error(val message: String) : ToolUiState()
+    object Empty : ToolUiState()
 }
 
 class ToolViewModel(private val apiService: ToolApiService) : ViewModel() {
@@ -24,15 +25,37 @@ class ToolViewModel(private val apiService: ToolApiService) : ViewModel() {
         fetchTools()
     }
 
-    private fun fetchTools() {
+    fun fetchTools() {
         viewModelScope.launch {
             _uiState.value = ToolUiState.Loading
             try {
                 val response = apiService.getAllTools()
                 if (response.isSuccessful && response.body() != null) {
-                    _uiState.value = ToolUiState.Success(response.body()!!)
+                    val tools = response.body()!!
+                    _uiState.value = if (tools.isEmpty()) ToolUiState.Empty else ToolUiState.Success(tools)
                 } else {
                     _uiState.value = ToolUiState.Error("Error al cargar herramientas: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                _uiState.value = ToolUiState.Error("Fallo de red: ${e.message}")
+            }
+        }
+    }
+
+    fun searchTools(query: String) {
+        if (query.isBlank()) {
+            fetchTools()
+            return
+        }
+        viewModelScope.launch {
+            _uiState.value = ToolUiState.Loading
+            try {
+                val response = apiService.searchTools(query)
+                if (response.isSuccessful && response.body() != null) {
+                    val tools = response.body()!!
+                    _uiState.value = if (tools.isEmpty()) ToolUiState.Empty else ToolUiState.Success(tools)
+                } else {
+                    _uiState.value = ToolUiState.Error("Error en búsqueda: ${response.code()}")
                 }
             } catch (e: Exception) {
                 _uiState.value = ToolUiState.Error("Fallo de red: ${e.message}")

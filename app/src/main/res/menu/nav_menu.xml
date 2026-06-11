@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="Catálogo" />
+    </group>
+
+    <!-- Opciones de Customer -->
+    <group android:id="@+id/group_customer">
+        <item
+            android:id="@+id/nav_my_bookings"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Mis Reservas" />
+
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Mi Perfil" />
+    </group>
+
+    <!-- Opciones de Provider -->
+    <group android:id="@+id/group_provider">
+        <item
+            android:id="@+id/nav_my_inventory"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Mi Inventario" />
+
+        <item
+            android:id="@+id/nav_my_rentals"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="Gestión de Alquileres" />
+    </group>
+
+    <!-- Opciones de Admin -->
+    <group android:id="@+id/group_admin">
+        <item
+            android:id="@+id/nav_admin_users"
+            android:icon="@android:drawable/ic_menu_my_calendar"
+            android:title="Gestión de Usuarios" />
+
+        <item
+            android:id="@+id/nav_admin_reports"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="Reportes / Dashboard" />
+    </group>
+
+    <!-- Cerrar sesión -->
+    <group android:id="@+id/group_session">
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@android:drawable/ic_menu_close_clear_cancel"
+            android:title="Cerrar Sesión" />
+    </group>
+
+</menu>
