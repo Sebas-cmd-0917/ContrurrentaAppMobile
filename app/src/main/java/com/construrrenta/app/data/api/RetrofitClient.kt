@@ -6,10 +6,11 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.construrrenta.app.BuildConfig
 
 object RetrofitClient {
     // URL base para un teléfono físico conectado a la misma red Wi-Fi que tu PC
-    private const val BASE_URL = "http://192.168.80.10:7860/api/v1/"
+    private const val BASE_URL = BuildConfig.BASE_URL
     private var retrofit: Retrofit? = null
 
     fun getInstance(context: Context): Retrofit {
