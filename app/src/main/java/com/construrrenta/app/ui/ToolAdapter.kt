@@ -1,11 +1,11 @@
 package com.construrrenta.app.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.construrrenta.app.BuildConfig
-import com.construrrenta.app.R
 import com.construrrenta.app.data.model.ToolResponse
 import com.construrrenta.app.databinding.ItemToolBinding
 
@@ -23,30 +23,37 @@ class ToolAdapter(
 
     override fun onBindViewHolder(holder: ToolViewHolder, position: Int) {
         val tool = tools[position]
+
         with(holder.binding) {
-            tvToolBrand.text = "Stock: ${tool.stock}"
+            // 1. Textos sincronizados con tu XML
             tvToolName.text = tool.name
             tvToolDescription.text = tool.description
             tvToolPrice.text = "$ ${tool.pricePerDay} / día"
 
-            // Cargar imagen con Coil, manejando rutas relativas y absolutas
+            // Mostramos el stock en el campo tvToolBrand de tu XML
+            tvToolBrand.text = if (tool.stock > 0) "Stock disponible: ${tool.stock}" else "Agotado"
+
+            // 2. Imágenes
             if (!tool.imageUrl.isNullOrBlank()) {
                 val imageUrl = if (tool.imageUrl.startsWith("http")) {
                     tool.imageUrl
                 } else {
-                    "${BuildConfig.BASE_URL.removeSuffix("/")}/${tool.imageUrl.removePrefix("/")}"
+                    val serverRootUrl = BuildConfig.BASE_URL.substringBefore("api/v1")
+                    "${serverRootUrl.removeSuffix("/")}/${tool.imageUrl.removePrefix("/")}"
                 }
+
+                Log.d("IMAGEN_DEBUG", "Cargando foto en: $imageUrl")
 
                 ivToolImage.load(imageUrl) {
-                    placeholder(R.drawable.ic_launcher_background)
-                    error(R.drawable.ic_launcher_background)
                     crossfade(true)
+                    placeholder(android.R.color.darker_gray)
+                    error(android.R.color.holo_red_light)
                 }
             } else {
-                ivToolImage.setImageResource(R.drawable.ic_launcher_background)
+                ivToolImage.setImageResource(android.R.color.darker_gray)
             }
 
-            // Click listener para la tarjeta entera y el botón Añadir
+            // 3. Clics
             root.setOnClickListener { onToolClick(tool) }
             btnAdd.setOnClickListener { onToolClick(tool) }
         }

@@ -6,13 +6,13 @@ data class LoginRequest(
     val password: String
 )
 
-// Lo que el backend responde si el login es exitoso (JWT)
+// Lo que el backend responde si el login es exitoso
 data class LoginResponse(
     val accessToken: String,
     val tokenType: String? = "Bearer"
 )
 
-// Lo que la app envía para registrar un nuevo usuario
+// Lo que registrar un nuevo usuario
 data class RegisterRequest(
     val email: String,
     val password: String,

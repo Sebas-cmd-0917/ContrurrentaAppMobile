@@ -3,7 +3,7 @@ package com.construrrenta.app.data.model
 data class BookingRequest(
     val userId: String,
     val toolId: String,
-    val startDate: String, // Se enviará en formato ISO-8601
+    val startDate: String,
     val endDate: String
 )
 

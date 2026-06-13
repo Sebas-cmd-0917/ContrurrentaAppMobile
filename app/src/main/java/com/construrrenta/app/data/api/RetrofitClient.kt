@@ -17,14 +17,12 @@ object RetrofitClient {
         if (retrofit == null) {
             val sessionManager = SessionManager(context)
 
-            // Permite ver los JSONs en el Logcat de Android Studio
             val loggingInterceptor = HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             }
 
             val authInterceptor = AuthInterceptor(sessionManager)
 
-            // Ensamblaje del cliente con los interceptores
             val client = OkHttpClient.Builder()
                 .addInterceptor(authInterceptor)
                 .addInterceptor(loggingInterceptor)
